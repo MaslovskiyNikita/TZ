@@ -10,11 +10,12 @@ from src.modules.books.schemas import BookResponse
 class BookController(BaseController):
     async def read_books(self) -> list[BookResponse]:
         books = await self.uow.book.read_books()
-        # TODO return list[BookResponse]
+        return [BookResponse.model_validate(book) for book in books]
 
-    async def create_book(self) -> BookResponse:
-        book = await self.uow.book.create_book()
-        # TODO return BookResponse
+    async def create_book(self, book) -> BookResponse:
+        book_db = await self.uow.book.create_book(book)
+        return BookResponse.model_validate(book_db)
+        
 
 
 async def get_controller(uow: PostgresUnitOfWorkDep) -> AsyncIterator[BookController]:

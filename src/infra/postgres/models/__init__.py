@@ -1,2 +1,5 @@
 from .author import Author
-# TODO import books
+from .book import Book
+from .association import BookAuthorAssociation
+
+__all__ = ["Author", "Book", "BookAuthorAssociation"]

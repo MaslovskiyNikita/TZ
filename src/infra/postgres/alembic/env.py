@@ -9,6 +9,7 @@ from alembic import context
 
 from src.app_config import app_config
 from src.infra.postgres.models.base import Base
+from src.infra.postgres.models import *  # noqa: E402, F403
 
 config = context.config
 
